@@ -21,16 +21,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
 
         StringBuilder cmd = new StringBuilder();
+        cmd.append("CREATE TABLE cliente (");
+        cmd.append("id integer PRIMARY KEY AUTOINCREMENT,");
+        cmd.append("nome varchar PRIMARY KEY AUTOINCREMENT);");
+
         cmd.append("CREATE TABLE pedido ( ");
         cmd.append("id integer PRIMARY KEY AUTOINCREMENT, ");
         cmd.append("id_cliente integer, ");
         cmd.append("mesa integer, ");
         cmd.append("data date,");
         cmd.append("valor_total decimal);");
-
-        cmd.append("CREATE TABLE cliente (");
-        cmd.append("id integer PRIMARY KEY AUTOINCREMENT,");
-        cmd.append("nome varchar PRIMARY KEY AUTOINCREMENT);");
 
         cmd.append("CREATE TABLE cardapio (");
         cmd.append("id integer PRIMARY KEY AUTOINCREMENT,");
