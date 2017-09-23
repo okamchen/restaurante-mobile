@@ -11,6 +11,12 @@ public class Cardapio {
     private double valor;
     private String categoria;
 
+    public static final String CATEGORIA_BEBIDAS = "bebidas";
+    public static final String CATEGORIA_ENTRADAS = "entradas";
+    public static final String CATEGORIA_PRATOS = "pratos";
+    public static final String CATEGORIA_SALADAS = "saladas";
+    public static final String CATEGORIA_SOBREMESAS = "sobremesas";
+
     public long getId() {
         return id;
     }
