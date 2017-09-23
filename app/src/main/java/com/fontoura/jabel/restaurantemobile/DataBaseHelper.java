@@ -49,17 +49,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
 
-        switch (oldVersion) {
-            case 1:
-                database.execSQL("alter table clientes add column dtNascimento timestamp;");
-
-            case 2:
-                database.execSQL("alter table clientes add column tpSexo char( 1 );");
-
-            case 4:
-                database.execSQL("alter table clientes add column tpPessoa char( 1 );");
-                database.execSQL("alter table clientes add column cdCpfCnpj varchar( 15 );");
-        }
+//        switch (oldVersion) {
+//            case 1:
+//                database.execSQL("alter table clientes add column dtNascimento timestamp;");
+//
+//            case 2:
+//                database.execSQL("alter table clientes add column tpSexo char( 1 );");
+//
+//            case 4:
+//                database.execSQL("alter table clientes add column tpPessoa char( 1 );");
+//                database.execSQL("alter table clientes add column cdCpfCnpj varchar( 15 );");
+//        }
     }
 }
 

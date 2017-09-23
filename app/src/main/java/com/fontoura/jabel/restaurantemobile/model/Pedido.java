@@ -5,4 +5,5 @@ package com.fontoura.jabel.restaurantemobile.model;
  */
 
 public class Pedido {
+    private
 }

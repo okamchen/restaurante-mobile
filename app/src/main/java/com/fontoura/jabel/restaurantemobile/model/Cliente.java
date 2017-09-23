@@ -6,15 +6,15 @@ package com.fontoura.jabel.restaurantemobile.model;
 
 public class Cliente {
 
-    private long idCliente;
+    private long id;
     private String nome;
 
-    public long getIdCliente() {
-        return idCliente;
+    public long getId() {
+        return id;
     }
 
-    public void setIdCliente(long idCliente) {
-        this.idCliente = idCliente;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
