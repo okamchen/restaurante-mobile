@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import com.fontoura.jabel.restaurantemobile.R;
 import com.fontoura.jabel.restaurantemobile.model.Cliente;
+import com.fontoura.jabel.restaurantemobile.model.Pedido;
 
 public class MainActivity extends AppCompatActivity {
 

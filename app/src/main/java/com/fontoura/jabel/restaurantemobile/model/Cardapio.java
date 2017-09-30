@@ -13,6 +13,18 @@ public class Cardapio implements Serializable {
     private double valor;
     private String categoria;
 
+    public Cardapio(){
+        super();
+    }
+
+    public Cardapio(long id, String descricao, double valor, String categoria){
+        super();
+        this.id = id;
+        this.descricao = descricao;
+        this.valor = valor;
+        this.categoria = categoria;
+    }
+
     public static final String CATEGORIA_BEBIDAS = "bebidas";
     public static final String CATEGORIA_ENTRADAS = "entradas";
     public static final String CATEGORIA_PRATOS = "pratos";
