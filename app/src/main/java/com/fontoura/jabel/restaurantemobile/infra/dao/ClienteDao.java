@@ -25,7 +25,7 @@ public class ClienteDao implements Dao<Cliente> {
     }
 
     @Override
-    public void insert(Cliente cliente) {
+    public void inserir(Cliente cliente) {
         ContentValues dados = pegaDadosDoCliente(cliente);
 
         writer.insert("cliente", null, dados);

@@ -1,7 +1,6 @@
 package com.fontoura.jabel.restaurantemobile.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 /**

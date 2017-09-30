@@ -25,7 +25,7 @@ public class CardapioDao implements Dao<Cardapio> {
     }
 
     @Override
-    public void insert(Cardapio cardapio) {
+    public void inserir(Cardapio cardapio) {
         ContentValues dados = pegaDadosDoCardapio(cardapio);
 
         writer.insert("cardapio", null, dados);

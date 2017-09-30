@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 public interface Dao<T> {
-    void insert(T t);
+    void inserir(T t);
     List<T> buscarTodos();
     T buscarPorId(long id);
     void deletar(long id);
