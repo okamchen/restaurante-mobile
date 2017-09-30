@@ -20,12 +20,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        context.deleteDatabase(DATABASE_NAME);
-        System.out.println("deletado");
-    }
-
-    public void insert() {
-
     }
 
     @Override
