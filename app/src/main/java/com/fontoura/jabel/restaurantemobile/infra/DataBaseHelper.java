@@ -7,16 +7,25 @@ package com.fontoura.jabel.restaurantemobile.infra;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.Settings;
 
+import com.fontoura.jabel.restaurantemobile.infra.dao.Dao;
 import com.fontoura.jabel.restaurantemobile.model.Cardapio;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "restaurateMobile.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
+    private Dao dao;
 
     public DataBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        context.deleteDatabase(DATABASE_NAME);
+        System.out.println("deletado");
+    }
+
+    public void insert() {
+
     }
 
     @Override
@@ -25,7 +34,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         StringBuilder cmd = new StringBuilder();
         cmd.append("CREATE TABLE cliente (");
         cmd.append("id integer PRIMARY KEY AUTOINCREMENT,");
-        cmd.append("nome varchar PRIMARY KEY AUTOINCREMENT);");
+        cmd.append("nome varchar);");
 
         cmd.append("CREATE TABLE pedido ( ");
         cmd.append("id integer PRIMARY KEY AUTOINCREMENT, ");
@@ -70,23 +79,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cmd.append("INSERT INTO cardapio (descricao, valor, categoria) VALUES('Sagu', 3.25, " + Cardapio.CATEGORIA_SOBREMESAS + ");");
         cmd.append("INSERT INTO cardapio (descricao, valor, categoria) VALUES('Gelatina', 1.75, " + Cardapio.CATEGORIA_SOBREMESAS + ");");
 
+
         database.execSQL(cmd.toString());
+        System.out.println("criado");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
-
-//        switch (oldVersion) {
-//            case 1:
-//                database.execSQL("alter table clientes add column dtNascimento timestamp;");
-//
-//            case 2:
-//                database.execSQL("alter table clientes add column tpSexo char( 1 );");
-//
-//            case 4:
-//                database.execSQL("alter table clientes add column tpPessoa char( 1 );");
-//                database.execSQL("alter table clientes add column cdCpfCnpj varchar( 15 );");
-//        }
     }
 }
 

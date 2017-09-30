@@ -15,6 +15,8 @@ public class Cliente implements Serializable {
         this.nome = nome;
     }
 
+    public Cliente() {}
+
     public long getId() {
         return id;
     }
