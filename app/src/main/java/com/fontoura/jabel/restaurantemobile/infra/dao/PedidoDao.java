@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.fontoura.jabel.restaurantemobile.model.Cardapio;
 import com.fontoura.jabel.restaurantemobile.model.Cliente;
 import com.fontoura.jabel.restaurantemobile.model.Pedido;
 
@@ -28,6 +29,16 @@ public class PedidoDao implements Dao<Pedido> {
     @Override
     public void inserir(Pedido pedido) {
         writer.insert("pedido", null, pegaDadosDoCliente(pedido));
+    }
+
+    public void inserir(Pedido pedido, Cardapio cardapio, int quantidade) {
+        ContentValues values = new ContentValues();
+        values.put("id_cardapio", cardapio.getId());
+        values.put("id_pedido", pedido.getId());
+        values.put("quantidade", quantidade);
+
+        writer.insert("pedido_cardapio", null, values);
+
     }
 
     private ContentValues pegaDadosDoCliente(Pedido pedido) {
