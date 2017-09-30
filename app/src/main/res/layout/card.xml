@@ -4,7 +4,7 @@
     android:clickable="true"
     android:id="@+id/mainViewId"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/min_cardview_height"
+    android:layout_height="match_parent"
     android:foreground="?android:attr/selectableItemBackground">
     <RelativeLayout
         android:id="@+id/mainContentViewId"
@@ -12,6 +12,8 @@
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imageViewId"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"/>
         <LinearLayout

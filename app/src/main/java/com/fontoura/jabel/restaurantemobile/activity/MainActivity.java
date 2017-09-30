@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.fontoura.jabel.restaurantemobile.R;
+import com.fontoura.jabel.restaurantemobile.infra.DataBaseHelper;
+import com.fontoura.jabel.restaurantemobile.infra.dao.ClienteDao;
+import com.fontoura.jabel.restaurantemobile.infra.dao.Dao;
 import com.fontoura.jabel.restaurantemobile.model.Cliente;
 import com.fontoura.jabel.restaurantemobile.model.Pedido;
 

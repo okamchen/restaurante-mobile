@@ -29,8 +29,8 @@ public class ClienteDao implements Dao<Cliente> {
         ContentValues dados = pegaDadosDoCliente(cliente);
 
         writer.insert("cliente", null, dados);
-
     }
+
     @Override
     public List<Cliente> buscarTodos() {
         String sql = "SELECT * FROM cliente;";
@@ -72,6 +72,7 @@ public class ClienteDao implements Dao<Cliente> {
     @NonNull
     private ContentValues pegaDadosDoCliente(Cliente cliente) {
         ContentValues dados = new ContentValues();
+        dados.put("id", cliente.getId());
         dados.put("nome", cliente.getNome());
         return dados;
     }
