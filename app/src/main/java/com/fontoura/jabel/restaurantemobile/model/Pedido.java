@@ -1,5 +1,6 @@
 package com.fontoura.jabel.restaurantemobile.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -7,10 +8,10 @@ import java.util.Date;
  * Created by Jabel on 09/23/2017.
  */
 
-public class Pedido {
+public class Pedido implements Serializable {
 
     private long id;
-    private long id_cliente;
+    private Cliente cliente;
     private long mesa;
     private Date data;
     private double valor_total;
@@ -23,12 +24,12 @@ public class Pedido {
         this.valor_total = valor_total;
     }
 
-    public long getId_cliente() {
-        return id_cliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setId_cliente(long id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public long getMesa() {

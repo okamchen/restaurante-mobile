@@ -1,4 +1,4 @@
-package com.fontoura.jabel.restaurantemobile;
+package com.fontoura.jabel.restaurantemobile.infra;
 
 /**
  * Created by Jabel on 09/23/2017.

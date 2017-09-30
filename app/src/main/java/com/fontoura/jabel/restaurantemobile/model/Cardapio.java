@@ -1,10 +1,12 @@
 package com.fontoura.jabel.restaurantemobile.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Jabel on 09/23/2017.
  */
 
-public class Cardapio {
+public class Cardapio implements Serializable {
 
     private long id;
     private String descricao;
