@@ -1,7 +1,9 @@
 package com.fontoura.jabel.restaurantemobile.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Jabel on 09/23/2017.
@@ -14,6 +16,7 @@ public class Pedido implements Serializable {
     private long mesa;
     private Date data;
     private double valor_total;
+    private List<Cardapio> itens = new ArrayList<Cardapio>();
 
     public double getValor_total() {
         return valor_total;
@@ -54,4 +57,8 @@ public class Pedido implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
+    public List<Cardapio> getItens() { return itens; }
+
+    public void setItens(List<Cardapio> itens) { this.itens = itens; }
 }
