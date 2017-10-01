@@ -20,6 +20,7 @@ public class PedidoDao implements Dao<Pedido> {
 
     private SQLiteDatabase reader;
     private SQLiteDatabase writer;
+    private CardapioDao cardapioDao;
 
     public PedidoDao(SQLiteDatabase reader, SQLiteDatabase writer) {
         this.reader = reader;
@@ -98,7 +99,7 @@ public class PedidoDao implements Dao<Pedido> {
         writer.delete("pedido", "id = ?", new String[]{ String.valueOf(id)});
     }
 
-    public Pedido montarPedido(Cursor c) {
+    private Pedido montarPedido(Cursor c) {
         Pedido pedido = new Pedido();
 
         pedido.setId(c.getLong(c.getColumnIndex("id")));
@@ -106,7 +107,33 @@ public class PedidoDao implements Dao<Pedido> {
         pedido.setData(new Date(c.getLong(c.getColumnIndex("data"))));
         pedido.setMesa(c.getLong(c.getColumnIndex("mesa")));
         pedido.setValor_total(c.getDouble(c.getColumnIndex("valor")));
+        pedido.setItens(buscarItensCardapioPorIdPedido(c.getLong(c.getColumnIndex("id"))));
 
         return pedido;
+    }
+
+    private List<Cardapio> buscarItensCardapioPorIdPedido(long id) {
+        List<Cardapio> itensCardapio = new ArrayList<Cardapio>();
+
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT c.id AS id_cardapio, p.id AS id_pedido, c.descricao, c.valor, c.categoria FROM cardapio c ");
+        sql.append("JOIN pedido_cardapio pc ");
+        sql.append("ON  pc.id_cardapio = c.id ");
+        sql.append("JOIN pedido p ON p.id = pc.id_pedido AND p.id = ?");
+
+        Cursor cursor = reader.rawQuery(sql.toString(), new String[]{ String.valueOf(id)});
+
+        while(cursor.moveToNext()) {
+            Cardapio cardapio = new Cardapio();
+
+            cardapio.setId(cursor.getLong(cursor.getColumnIndex("id_cardapio")));
+            cardapio.setDescricao(cursor.getString(cursor.getColumnIndex("descricao")));
+            cardapio.setCategoria(cursor.getString(cursor.getColumnIndex("categoria")));
+            cardapio.setValor(cursor.getDouble(cursor.getColumnIndex("valor")));
+
+            itensCardapio.add(cardapio);
+        }
+
+        return itensCardapio;
     }
 }
