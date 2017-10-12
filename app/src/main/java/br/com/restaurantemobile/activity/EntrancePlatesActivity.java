@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import br.com.restaurantemobile.R;
-import br.com.restaurantemobile.infra.RecyclerViewAdapter;
+import br.com.restaurantemobile.infra.EntrancePlateRecyclerViewAdapter;
 import br.com.restaurantemobile.model.Pedido;
 
 import java.util.List;
@@ -22,9 +22,9 @@ import br.com.restaurantemobile.model.dominio.DominioCategoriaCardapio;
 public class EntrancePlatesActivity extends AppCompatActivity {
 
     private Pedido pedido;
-    private RecyclerView mRecyclerView;
+    private RecyclerView entrancePlatesRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +36,19 @@ public class EntrancePlatesActivity extends AppCompatActivity {
 
     private void initializeComponents() {
         setTitle("Pratos de Entrada");
+
         pedido = (Pedido) getIntent().getSerializableExtra("pedido");
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        entrancePlatesRecyclerView = (RecyclerView) findViewById(R.id.entrance_plates_view);
 
-        mRecyclerView.setHasFixedSize(true);
+        entrancePlatesRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        layoutManager = new LinearLayoutManager(this);
+        entrancePlatesRecyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new RecyclerViewAdapter(getDataBase());
-        mRecyclerView.setAdapter(mAdapter);
+        mAdapter = new EntrancePlateRecyclerViewAdapter(getDataBase());
+
+        entrancePlatesRecyclerView.setAdapter(mAdapter);
 
     }
 

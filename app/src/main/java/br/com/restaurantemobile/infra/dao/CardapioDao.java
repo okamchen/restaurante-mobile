@@ -65,7 +65,7 @@ public class CardapioDao extends Dao<Cardapio> {
 
     public List<Cardapio> buscarPorCategoria(DominioCategoriaCardapio categoria) {
 
-        Cursor c = reader.query(Cardapio.TABLE_NAME, Cardapio.TABLE_COLUMNS, null, null, null, null, null);
+        Cursor c = reader.rawQuery("SELECT id, descricao, categoria, valor FROM cardapio WHERE categoria =?", new String[]{ categoria.name() });
 
         List<Cardapio> listaCardapio = new ArrayList<>();
 
@@ -86,7 +86,9 @@ public class CardapioDao extends Dao<Cardapio> {
 
     @Override
     public Cardapio buscarPorId(long id) {
+
         Cursor c = reader.rawQuery("SELECT * FROM cardapio WHERE Id = ?", new String[]{ Long.toString(id) });
+
         c.moveToNext();
 
         Cardapio cardapio = new Cardapio();

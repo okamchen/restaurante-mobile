@@ -36,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
         btnStartOrder.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+
+                if(txtName.getText().toString().trim().equals("")){
+                    txtName.setError( "Nome do cliente é obrigatório!" );
+                    return;
+                }
+
+                if(txtNumber.getText().toString().trim().equals("")){
+                    txtNumber.setError( "Número da mesa é obrigatório!" );
+                    return;
+                }
+
                 pedido.setMesa(Long.valueOf(txtNumber.getText().toString()));
                 pedido.setCliente(new Cliente(txtName.getText().toString()));
 
