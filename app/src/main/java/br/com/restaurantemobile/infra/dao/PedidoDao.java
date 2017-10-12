@@ -1,30 +1,33 @@
-package com.fontoura.jabel.restaurantemobile.infra.dao;
+package br.com.restaurantemobile.infra.dao;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 
-import com.fontoura.jabel.restaurantemobile.model.Cardapio;
-import com.fontoura.jabel.restaurantemobile.model.Cliente;
-import com.fontoura.jabel.restaurantemobile.model.Pedido;
+import br.com.restaurantemobile.model.Cliente;
+import br.com.restaurantemobile.model.Pedido;
 
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.restaurantemobile.model.Cardapio;
+
 /**
  * Created by Jabel on 09/30/2017.
  */
 
-public class PedidoDao implements Dao<Pedido> {
+public class PedidoDao extends Dao<Pedido> {
 
-    private SQLiteDatabase reader;
-    private SQLiteDatabase writer;
-    private CardapioDao cardapioDao;
+    private ClienteDao clienteDao;
 
-    public PedidoDao(SQLiteDatabase reader, SQLiteDatabase writer) {
-        this.reader = reader;
-        this.writer = writer;
+    public PedidoDao(Context context) {
+        super(context);
+        this.clienteDao = clienteDao.build(context);
+    }
+
+    public PedidoDao build(Context context){
+        return new PedidoDao(context);
     }
 
     @Override
@@ -103,7 +106,7 @@ public class PedidoDao implements Dao<Pedido> {
         Pedido pedido = new Pedido();
 
         pedido.setId(c.getLong(c.getColumnIndex("id")));
-        pedido.setCliente(new ClienteDao(reader, writer).buscarPorId(c.getLong(c.getColumnIndex("id_cliente"))));
+        pedido.setCliente(clienteDao.buscarPorId(c.getLong(c.getColumnIndex("id_cliente"))));
         pedido.setData(new Date(c.getLong(c.getColumnIndex("data"))));
         pedido.setMesa(c.getLong(c.getColumnIndex("mesa")));
         pedido.setValor_total(c.getDouble(c.getColumnIndex("valor")));

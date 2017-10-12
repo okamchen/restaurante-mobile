@@ -1,27 +1,27 @@
-package com.fontoura.jabel.restaurantemobile.infra.dao;
+package br.com.restaurantemobile.infra.dao;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
-import com.fontoura.jabel.restaurantemobile.model.Cardapio;
-import com.fontoura.jabel.restaurantemobile.model.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.restaurantemobile.model.Cardapio;
+import br.com.restaurantemobile.model.dominio.DominioCategoriaCardapio;
 
 /**
  * Created by Jabel on 09/30/2017.
  */
 
-public class CardapioDao implements Dao<Cardapio> {
+public class CardapioDao extends Dao<Cardapio> {
 
-    private SQLiteDatabase reader;
-    private SQLiteDatabase writer;
+    private CardapioDao(Context context){
+        super(context);
+    }
 
-    public CardapioDao(SQLiteDatabase reader, SQLiteDatabase writer) {
-        this.reader = reader;
-        this.writer = writer;
+    public static CardapioDao build(Context context) {
+        return new CardapioDao(context);
     }
 
     @Override
@@ -63,10 +63,11 @@ public class CardapioDao implements Dao<Cardapio> {
         return listaCardapio;
     }
 
-    public List<Cardapio> buscarPorCategoria(String categoria) {
-        Cursor c = reader.rawQuery("SELECT * FROM cardapio WHERE categoria = ?", new String[]{ categoria });
+    public List<Cardapio> buscarPorCategoria(DominioCategoriaCardapio categoria) {
 
-        List<Cardapio> listaCardapio = new ArrayList<Cardapio>();
+        Cursor c = reader.query(Cardapio.TABLE_NAME, Cardapio.TABLE_COLUMNS, null, null, null, null, null);
+
+        List<Cardapio> listaCardapio = new ArrayList<>();
 
         while(c.moveToNext()) {
             Cardapio cardapio = new Cardapio();

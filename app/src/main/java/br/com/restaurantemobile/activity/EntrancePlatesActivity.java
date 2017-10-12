@@ -1,17 +1,19 @@
-package com.fontoura.jabel.restaurantemobile.activity;
+package br.com.restaurantemobile.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.fontoura.jabel.restaurantemobile.R;
-import com.fontoura.jabel.restaurantemobile.infra.RecyclerViewAdapter;
-import com.fontoura.jabel.restaurantemobile.model.Cardapio;
-import com.fontoura.jabel.restaurantemobile.model.Pedido;
+import br.com.restaurantemobile.R;
+import br.com.restaurantemobile.infra.RecyclerViewAdapter;
+import br.com.restaurantemobile.model.Pedido;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import br.com.restaurantemobile.infra.dao.CardapioDao;
+import br.com.restaurantemobile.model.Cardapio;
+import br.com.restaurantemobile.model.dominio.DominioCategoriaCardapio;
 
 /**
  * Created by kone on 9/30/17.
@@ -49,13 +51,6 @@ public class EntrancePlatesActivity extends AppCompatActivity {
     }
 
     public List<Cardapio> getDataBase() {
-        List<Cardapio> cardapiosEntrada = new ArrayList<>();
-
-        cardapiosEntrada.add(new Cardapio(1L, "Salada Julis", 12.98, Cardapio.CATEGORIA_ENTRADAS));
-        cardapiosEntrada.add(new Cardapio(2L, "Degoste de onte", 20.32, Cardapio.CATEGORIA_ENTRADAS));
-        cardapiosEntrada.add(new Cardapio(3L, "Salada mista", 32.97, Cardapio.CATEGORIA_ENTRADAS));
-        cardapiosEntrada.add(new Cardapio(4L, "Maionese de maçã", 23.98, Cardapio.CATEGORIA_ENTRADAS));
-
-        return cardapiosEntrada;
+        return CardapioDao.build(this).buscarPorCategoria(DominioCategoriaCardapio.ENTRADAS);
     }
 }

@@ -1,4 +1,4 @@
-package com.fontoura.jabel.restaurantemobile.activity;
+package br.com.restaurantemobile.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.fontoura.jabel.restaurantemobile.R;
-import com.fontoura.jabel.restaurantemobile.model.Cliente;
-import com.fontoura.jabel.restaurantemobile.model.Pedido;
+import br.com.restaurantemobile.R;
+import br.com.restaurantemobile.model.Cliente;
+import br.com.restaurantemobile.model.Pedido;
 
 public class MainActivity extends AppCompatActivity {
 

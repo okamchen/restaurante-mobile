@@ -1,11 +1,11 @@
-package com.fontoura.jabel.restaurantemobile.infra.dao;
+package br.com.restaurantemobile.infra.dao;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.annotation.NonNull;
 
-import com.fontoura.jabel.restaurantemobile.model.Cliente;
+import br.com.restaurantemobile.model.Cliente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +14,14 @@ import java.util.List;
  * Created by Jabel on 09/30/2017.
  */
 
-public class ClienteDao implements Dao<Cliente> {
+public class ClienteDao extends Dao<Cliente> {
 
-    private SQLiteDatabase reader;
-    private SQLiteDatabase writer;
+    private ClienteDao(Context context) {
+        super(context);
+    }
 
-    public ClienteDao(SQLiteDatabase reader, SQLiteDatabase writer) {
-        this.reader = reader;
-        this.writer = writer;
+    public ClienteDao build(Context context){
+        return new ClienteDao(context);
     }
 
     @Override

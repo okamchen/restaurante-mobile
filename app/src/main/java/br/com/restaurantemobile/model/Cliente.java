@@ -1,4 +1,4 @@
-package com.fontoura.jabel.restaurantemobile.model;
+package br.com.restaurantemobile.model;
 
 import java.io.Serializable;
 

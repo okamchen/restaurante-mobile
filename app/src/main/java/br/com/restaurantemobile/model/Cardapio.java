@@ -1,4 +1,4 @@
-package com.fontoura.jabel.restaurantemobile.model;
+package br.com.restaurantemobile.model;
 
 import java.io.Serializable;
 
@@ -7,6 +7,9 @@ import java.io.Serializable;
  */
 
 public class Cardapio implements Serializable {
+
+    public static String TABLE_NAME = "Cardapio";
+    public static String[] TABLE_COLUMNS =  {"id", "descricao", "valor", "categoria"};
 
     private long id;
     private String descricao;
@@ -24,12 +27,6 @@ public class Cardapio implements Serializable {
         this.valor = valor;
         this.categoria = categoria;
     }
-
-    public static final String CATEGORIA_BEBIDAS = "bebidas";
-    public static final String CATEGORIA_ENTRADAS = "entradas";
-    public static final String CATEGORIA_PRATOS = "pratos";
-    public static final String CATEGORIA_SALADAS = "saladas";
-    public static final String CATEGORIA_SOBREMESAS = "sobremesas";
 
     public long getId() {
         return id;

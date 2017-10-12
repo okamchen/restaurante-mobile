@@ -1,4 +1,4 @@
-package com.fontoura.jabel.restaurantemobile.infra;
+package br.com.restaurantemobile.infra;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,10 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.fontoura.jabel.restaurantemobile.R;
-import com.fontoura.jabel.restaurantemobile.model.Cardapio;
 
 import java.util.List;
+
+import br.com.restaurantemobile.R;
+import br.com.restaurantemobile.model.Cardapio;
 
 /**
  * Created by kone on 9/30/17.
