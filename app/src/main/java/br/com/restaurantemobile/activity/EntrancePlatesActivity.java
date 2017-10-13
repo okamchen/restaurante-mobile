@@ -11,7 +11,7 @@ import br.com.restaurantemobile.model.Pedido;
 
 import java.util.List;
 
-import br.com.restaurantemobile.infra.dao.CardapioDao;
+import br.com.restaurantemobile.dao.CardapioDao;
 import br.com.restaurantemobile.model.Cardapio;
 import br.com.restaurantemobile.model.dominio.DominioCategoriaCardapio;
 
@@ -25,6 +25,7 @@ public class EntrancePlatesActivity extends AppCompatActivity {
     private RecyclerView entrancePlatesRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

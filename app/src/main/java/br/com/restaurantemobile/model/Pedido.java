@@ -15,15 +15,19 @@ public class Pedido implements Serializable {
     private Cliente cliente;
     private long mesa;
     private Date data;
-    private double valor_total;
-    private List<Cardapio> itens = new ArrayList<Cardapio>();
+    private double valorTotal;
+    private List<Cardapio> bebidas = new ArrayList<>();
+    private List<Cardapio> saladas = new ArrayList<>();
+    private List<Cardapio> pratosEntrada = new ArrayList<>();
+    private List<Cardapio> pratosPrincipais = new ArrayList<>();
+    private List<Cardapio> pratosSobremesa = new ArrayList<>();
 
-    public double getValor_total() {
-        return valor_total;
+    public long getId() {
+        return id;
     }
 
-    public void setValor_total(double valor_total) {
-        this.valor_total = valor_total;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Cliente getCliente() {
@@ -50,15 +54,51 @@ public class Pedido implements Serializable {
         this.data = data;
     }
 
-    public long getId() {
-        return id;
+    public double getValorTotal() {
+        return valorTotal;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
 
-    public List<Cardapio> getItens() { return itens; }
+    public List<Cardapio> getBebidas() {
+        return bebidas;
+    }
 
-    public void setItens(List<Cardapio> itens) { this.itens = itens; }
+    public void setBebidas(List<Cardapio> bebidas) {
+        this.bebidas = bebidas;
+    }
+
+    public List<Cardapio> getSaladas() {
+        return saladas;
+    }
+
+    public void setSaladas(List<Cardapio> saladas) {
+        this.saladas = saladas;
+    }
+
+    public List<Cardapio> getPratosEntrada() {
+        return pratosEntrada;
+    }
+
+    public void setPratosEntrada(List<Cardapio> pratosEntrada) {
+        this.pratosEntrada = pratosEntrada;
+    }
+
+    public List<Cardapio> getPratosPrincipais() {
+        return pratosPrincipais;
+    }
+
+    public void setPratosPrincipais(List<Cardapio> pratosPrincipais) {
+        this.pratosPrincipais = pratosPrincipais;
+    }
+
+    public List<Cardapio> getPratosSobremesa() {
+        return pratosSobremesa;
+    }
+
+    public void setPratosSobremesa(List<Cardapio> pratosSobremesa) {
+        this.pratosSobremesa = pratosSobremesa;
+    }
 }

@@ -1,4 +1,4 @@
-package br.com.restaurantemobile.infra.dao;
+package br.com.restaurantemobile.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
