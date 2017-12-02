@@ -1,6 +1,7 @@
 package br.com.restaurantemobile.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Pedido implements Serializable {
     private Cliente cliente;
     private long mesa;
     private Date data;
-    private double valorTotal;
+    private BigDecimal valorTotal = new BigDecimal("0");
     private List<Cardapio> bebidas = new ArrayList<>();
     private List<Cardapio> saladas = new ArrayList<>();
     private List<Cardapio> pratosEntrada = new ArrayList<>();
@@ -54,11 +55,11 @@ public class Pedido implements Serializable {
         this.data = data;
     }
 
-    public double getValorTotal() {
+    public BigDecimal getValorTotal() {
         return valorTotal;
     }
 
-    public void setValorTotal(double valorTotal) {
+    public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
     }
 
@@ -100,5 +101,23 @@ public class Pedido implements Serializable {
 
     public void setPratosSobremesa(List<Cardapio> pratosSobremesa) {
         this.pratosSobremesa = pratosSobremesa;
+    }
+
+    public void somarValorTotal(String valor){
+        BigDecimal valorReal = getValorReal(valor);
+        this.valorTotal = this.valorTotal.add(valorReal);
+    }
+
+    public void subtraiValorTotal(String valor){
+        BigDecimal valorReal = getValorReal(valor);
+        this.valorTotal = this.valorTotal.subtract(valorReal);
+    }
+
+    private BigDecimal getValorReal(String valor){
+        return new BigDecimal(valor.replace("R$", "").replace(",", "."));
+    }
+
+    public String getValorTotalFormatado(){
+        return "Valor Total: R$ " + this.valorTotal;
     }
 }

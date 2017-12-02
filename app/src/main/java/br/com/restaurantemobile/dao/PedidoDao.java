@@ -7,6 +7,7 @@ import android.database.Cursor;
 import br.com.restaurantemobile.model.Cliente;
 import br.com.restaurantemobile.model.Pedido;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +51,7 @@ public class PedidoDao extends Dao<Pedido> {
         ContentValues dados = new ContentValues();
         dados.put("id", pedido.getId());
         dados.put("id_cliente", pedido.getCliente().getId());
-        dados.put("valor_total", pedido.getValorTotal());
+        dados.put("valor_total", pedido.getValorTotal().doubleValue());
         dados.put("mesa", pedido.getMesa());
         dados.put("data", pedido.getData().toString());
 
@@ -110,7 +111,7 @@ public class PedidoDao extends Dao<Pedido> {
         pedido.setCliente(clienteDao.buscarPorId(c.getLong(c.getColumnIndex("id_cliente"))));
         pedido.setData(new Date(c.getLong(c.getColumnIndex("data"))));
         pedido.setMesa(c.getLong(c.getColumnIndex("mesa")));
-        pedido.setValorTotal(c.getDouble(c.getColumnIndex("valor")));
+        pedido.setValorTotal(new BigDecimal(c.getString(c.getColumnIndex("valor"))));
 
         pedido.setPratosEntrada(getItensCardapioByPedidoId(c.getLong(c.getColumnIndex("id")), DominioCategoriaCardapio.ENTRADAS));
         pedido.setPratosPrincipais(getItensCardapioByPedidoId(c.getLong(c.getColumnIndex("id")), DominioCategoriaCardapio.PRATOS));

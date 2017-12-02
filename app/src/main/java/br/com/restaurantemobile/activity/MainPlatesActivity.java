@@ -18,14 +18,10 @@ import br.com.restaurantemobile.model.Cardapio;
 import br.com.restaurantemobile.model.Pedido;
 import br.com.restaurantemobile.model.dominio.DominioCategoriaCardapio;
 
-/**
- * Created by kone on 9/30/17.
- */
-
-public class EntrancePlatesActivity extends AppCompatActivity {
+public class MainPlatesActivity extends AppCompatActivity {
 
     private Pedido pedido;
-    private RecyclerView entrancePlatesRecyclerView;
+    private RecyclerView mainPlatesRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private TextView txtTotalPedido;
@@ -34,22 +30,22 @@ public class EntrancePlatesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.entrance_plates);
+        setContentView(R.layout.main_plates);
 
         initializeComponents();
     }
 
-    private void initializeComponents() {
-        setTitle("Pratos de Entrada");
+    public void initializeComponents(){
+        setTitle("Pratos Principais");
 
         pedido = (Pedido) getIntent().getSerializableExtra("pedido");
 
-        entrancePlatesRecyclerView = (RecyclerView) findViewById(R.id.entrance_plates_view);
+        mainPlatesRecyclerView = (RecyclerView) findViewById(R.id.main_plates_view);
 
-        entrancePlatesRecyclerView.setHasFixedSize(true);
+        mainPlatesRecyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
-        entrancePlatesRecyclerView.setLayoutManager(layoutManager);
+        mainPlatesRecyclerView.setLayoutManager(layoutManager);
 
         txtTotalPedido = (TextView) findViewById(R.id.txtTotalPedido);
 
@@ -57,21 +53,22 @@ public class EntrancePlatesActivity extends AppCompatActivity {
 
         mAdapter = new MenuRecyclerViewAdapter(getDataBase(), pedido, txtTotalPedido );
 
-        entrancePlatesRecyclerView.setAdapter(mAdapter);
+        mainPlatesRecyclerView.setAdapter(mAdapter);
 
         btnAvancar = (Button) findViewById(R.id.btnAvancar);
 
         btnAvancar.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent mainPlatesActivity = new Intent(EntrancePlatesActivity.this, MainPlatesActivity.class);
-                mainPlatesActivity.putExtra("pedido", pedido);
-                startActivity(mainPlatesActivity);
+                Intent dessertPlatesActivity = new Intent(MainPlatesActivity.this, DessertPlatesActivity.class);
+                dessertPlatesActivity.putExtra("pedido", pedido);
+                startActivity(dessertPlatesActivity);
             }
         });
     }
 
     public List<Cardapio> getDataBase() {
-        return CardapioDao.build(this).buscarPorCategoria(DominioCategoriaCardapio.BEBIDAS);
+        return CardapioDao.build(this).buscarPorCategoria(DominioCategoriaCardapio.PRATOS);
     }
+
 }

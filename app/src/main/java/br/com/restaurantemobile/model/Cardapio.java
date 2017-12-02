@@ -9,9 +9,10 @@ import java.io.Serializable;
 public class Cardapio implements Serializable {
 
     public static String TABLE_NAME = "Cardapio";
-    public static String[] TABLE_COLUMNS =  {"id", "descricao", "valor", "categoria"};
+    public static String[] TABLE_COLUMNS =  {"id", "codigo",  "descricao", "valor", "categoria"};
 
     private long id;
+    private int codigo;
     private String descricao;
     private double valor;
     private String categoria;
@@ -20,9 +21,10 @@ public class Cardapio implements Serializable {
         super();
     }
 
-    public Cardapio(long id, String descricao, double valor, String categoria){
+    public Cardapio(long id, int codigo, String descricao, double valor, String categoria){
         super();
         this.id = id;
+        this.codigo = codigo;
         this.descricao = descricao;
         this.valor = valor;
         this.categoria = categoria;
@@ -34,6 +36,14 @@ public class Cardapio implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getDescricao() {

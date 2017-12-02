@@ -1,6 +1,5 @@
 package br.com.restaurantemobile.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,13 +18,13 @@ import br.com.restaurantemobile.model.Pedido;
 import br.com.restaurantemobile.model.dominio.DominioCategoriaCardapio;
 
 /**
- * Created by kone on 9/30/17.
+ * Created by kone on 12/2/17.
  */
 
-public class EntrancePlatesActivity extends AppCompatActivity {
+public class DessertPlatesActivity extends AppCompatActivity {
 
     private Pedido pedido;
-    private RecyclerView entrancePlatesRecyclerView;
+    private RecyclerView dessertPlatesRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private TextView txtTotalPedido;
@@ -34,22 +33,22 @@ public class EntrancePlatesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.entrance_plates);
+        setContentView(R.layout.dessert_plates);
 
         initializeComponents();
     }
 
-    private void initializeComponents() {
-        setTitle("Pratos de Entrada");
+    public void initializeComponents(){
+        setTitle("Soremesas");
 
         pedido = (Pedido) getIntent().getSerializableExtra("pedido");
 
-        entrancePlatesRecyclerView = (RecyclerView) findViewById(R.id.entrance_plates_view);
+        dessertPlatesRecyclerView = (RecyclerView) findViewById(R.id.dessert_plates_view);
 
-        entrancePlatesRecyclerView.setHasFixedSize(true);
+        dessertPlatesRecyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
-        entrancePlatesRecyclerView.setLayoutManager(layoutManager);
+        dessertPlatesRecyclerView.setLayoutManager(layoutManager);
 
         txtTotalPedido = (TextView) findViewById(R.id.txtTotalPedido);
 
@@ -57,21 +56,22 @@ public class EntrancePlatesActivity extends AppCompatActivity {
 
         mAdapter = new MenuRecyclerViewAdapter(getDataBase(), pedido, txtTotalPedido );
 
-        entrancePlatesRecyclerView.setAdapter(mAdapter);
+        dessertPlatesRecyclerView.setAdapter(mAdapter);
 
         btnAvancar = (Button) findViewById(R.id.btnAvancar);
 
         btnAvancar.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent mainPlatesActivity = new Intent(EntrancePlatesActivity.this, MainPlatesActivity.class);
-                mainPlatesActivity.putExtra("pedido", pedido);
-                startActivity(mainPlatesActivity);
+//                Intent mainPlatesActivity = new Intent(DessertPlatesActivity.this, DessertPlatesActivity.class);
+//                mainPlatesActivity .putExtra("pedido", pedido);
+//                startActivity(mainPlatesActivity);
             }
         });
     }
 
     public List<Cardapio> getDataBase() {
-        return CardapioDao.build(this).buscarPorCategoria(DominioCategoriaCardapio.BEBIDAS);
+        return CardapioDao.build(this).buscarPorCategoria(DominioCategoriaCardapio.SOBREMESAS);
     }
+
 }
