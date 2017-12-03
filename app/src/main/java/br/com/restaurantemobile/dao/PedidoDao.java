@@ -113,12 +113,6 @@ public class PedidoDao extends Dao<Pedido> {
         pedido.setMesa(c.getLong(c.getColumnIndex("mesa")));
         pedido.setValorTotal(new BigDecimal(c.getString(c.getColumnIndex("valor"))));
 
-        pedido.setPratosEntrada(getItensCardapioByPedidoId(c.getLong(c.getColumnIndex("id")), DominioCategoriaCardapio.ENTRADAS));
-        pedido.setPratosPrincipais(getItensCardapioByPedidoId(c.getLong(c.getColumnIndex("id")), DominioCategoriaCardapio.PRATOS));
-        pedido.setPratosSobremesa(getItensCardapioByPedidoId(c.getLong(c.getColumnIndex("id")), DominioCategoriaCardapio.SOBREMESAS));
-        pedido.setSaladas(getItensCardapioByPedidoId(c.getLong(c.getColumnIndex("id")), DominioCategoriaCardapio.SALADAS));
-        pedido.setBebidas(getItensCardapioByPedidoId(c.getLong(c.getColumnIndex("id")), DominioCategoriaCardapio.BEBIDAS));
-
         return pedido;
     }
 

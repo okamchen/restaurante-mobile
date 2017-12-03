@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.restaurantemobile.R;
+import br.com.restaurantemobile.business.PaymentRecyclerViewAdapter;
 import br.com.restaurantemobile.dao.CardapioDao;
 import br.com.restaurantemobile.business.MenuRecyclerViewAdapter;
 import br.com.restaurantemobile.model.Cardapio;
@@ -51,25 +53,21 @@ public class PaymentActivity extends AppCompatActivity {
 
         txtTotalPedido.setText(pedido.getValorTotalFormatado());
 
-        mAdapter = new MenuRecyclerViewAdapter(getDataBase(), pedido, txtTotalPedido );
+        mAdapter = new PaymentRecyclerViewAdapter(pedido.getItens());
 
         dessertPlatesRecyclerView.setAdapter(mAdapter);
 
         btnAvancar = (Button) findViewById(R.id.btnAvancar);
 
-        btnAvancar.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-//                Intent dessertPlatesActivity = new Intent(PaymentActivity.this, DessertActivity.class);
-//                dessertPlatesActivity.putExtra("pedido", pedido);
-//                startActivity(dessertPlatesActivity);
-                // chamar api para finalizar pedido
-            }
-        });
-    }
-
-    public List<Cardapio> getDataBase() {
-        return CardapioDao.build(this).buscarPorCategoria(DominioCategoriaCardapio.ENTRADAS);
+//        btnAvancar.setOnClickListener(new View.OnClickListener() {
+//
+//            public void onClick(View v) {
+////                Intent dessertPlatesActivity = new Intent(PaymentActivity.this, DessertActivity.class);
+////                dessertPlatesActivity.putExtra("pedido", pedido);
+////                startActivity(dessertPlatesActivity);
+//                // chamar api para finalizar pedido
+//            }
+//        });
     }
 
 }

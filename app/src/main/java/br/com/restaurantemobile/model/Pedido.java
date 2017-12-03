@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Jabel on 09/23/2017.
- */
-
 public class Pedido implements Serializable {
 
     private long id;
@@ -17,11 +13,7 @@ public class Pedido implements Serializable {
     private long mesa;
     private Date data;
     private BigDecimal valorTotal = new BigDecimal("0");
-    private List<Cardapio> bebidas = new ArrayList<>();
-    private List<Cardapio> saladas = new ArrayList<>();
-    private List<Cardapio> pratosEntrada = new ArrayList<>();
-    private List<Cardapio> pratosPrincipais = new ArrayList<>();
-    private List<Cardapio> pratosSobremesa = new ArrayList<>();
+    private List<Cardapio> itens;
 
     public long getId() {
         return id;
@@ -63,46 +55,6 @@ public class Pedido implements Serializable {
         this.valorTotal = valorTotal;
     }
 
-    public List<Cardapio> getBebidas() {
-        return bebidas;
-    }
-
-    public void setBebidas(List<Cardapio> bebidas) {
-        this.bebidas = bebidas;
-    }
-
-    public List<Cardapio> getSaladas() {
-        return saladas;
-    }
-
-    public void setSaladas(List<Cardapio> saladas) {
-        this.saladas = saladas;
-    }
-
-    public List<Cardapio> getPratosEntrada() {
-        return pratosEntrada;
-    }
-
-    public void setPratosEntrada(List<Cardapio> pratosEntrada) {
-        this.pratosEntrada = pratosEntrada;
-    }
-
-    public List<Cardapio> getPratosPrincipais() {
-        return pratosPrincipais;
-    }
-
-    public void setPratosPrincipais(List<Cardapio> pratosPrincipais) {
-        this.pratosPrincipais = pratosPrincipais;
-    }
-
-    public List<Cardapio> getPratosSobremesa() {
-        return pratosSobremesa;
-    }
-
-    public void setPratosSobremesa(List<Cardapio> pratosSobremesa) {
-        this.pratosSobremesa = pratosSobremesa;
-    }
-
     public void somarValorTotal(String valor){
         BigDecimal valorReal = getValorReal(valor);
         this.valorTotal = this.valorTotal.add(valorReal);
@@ -120,5 +72,29 @@ public class Pedido implements Serializable {
     public String getValorTotalFormatado(){
         return "Valor Total: R$ " + this.valorTotal;
     }
+
+    public List<Cardapio> getItens(){
+        return this.itens;
+    }
+
+    public void addItem(Cardapio item){
+
+        if(this.itens == null) {
+            this.itens = new ArrayList<>();
+        }
+        this.getItens().add(item);
+    }
+
+    public void removeItem(Cardapio item){
+
+        if(this.itens == null) {
+            return;
+        }
+
+        if(this.getItens().contains(item)){
+            this.getItens().remove(item);
+        }
+    }
+
 
 }

@@ -37,10 +37,13 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.description.setText(cardapios.get(position).getDescricao());
+        Cardapio item = cardapios.get(position);
+
+        holder.description.setText(item.getDescricao());
         holder.price.setText(getPriceWithCurrency(position));
-        holder.image.setImageResource(getImage(cardapios.get(position)));
+        holder.image.setImageResource(getImage(item));
         holder.amount.setText("0");
+        holder.item = item;
     }
 
     private int getImage(Cardapio cardapio) {
@@ -76,8 +79,9 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         private RelativeLayout rowView;
         private Pedido pedido;
         private TextView txtTotalPedido;
+        private Cardapio item;
 
-        public MyViewHolder(View itemView, Pedido pedido, final TextView txtTotalPedido) {
+        public MyViewHolder(View itemView, final Pedido pedido, final TextView txtTotalPedido) {
             super(itemView);
 
             this.pedido = pedido;
@@ -96,9 +100,9 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
                     Integer qtd = Integer.valueOf(amount.getText().toString());
                     qtd = qtd + 1;
 
-                    System.out.print("Valor do item: " + price);
-
                     getPedido().somarValorTotal(price.getText().toString());
+
+                    getPedido().addItem(getItem());
 
                     txtTotalPedido.setText(getPedido().getValorTotalFormatado());
 
@@ -113,10 +117,10 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
                     Integer qtd = Integer.valueOf(amount.getText().toString());
                     qtd = qtd > 0 ? qtd - 1 : 0;
 
-                    System.out.print("Valor do item: " + price);
-
                     getPedido().subtraiValorTotal(price.getText().toString());
                     amount.setText(qtd.toString());
+
+                    getPedido().removeItem(getItem());
 
                     txtTotalPedido.setText(getPedido().getValorTotalFormatado());
 
@@ -128,6 +132,8 @@ public class MenuRecyclerViewAdapter extends RecyclerView.Adapter<MenuRecyclerVi
         public Pedido getPedido(){
             return this.pedido;
         }
+
+        public Cardapio getItem(){ return this.item; }
 
     }
 }

@@ -2,10 +2,6 @@ package br.com.restaurantemobile.model;
 
 import java.io.Serializable;
 
-/**
- * Created by Jabel on 09/23/2017.
- */
-
 public class Cardapio implements Serializable {
 
     public static String TABLE_NAME = "Cardapio";
