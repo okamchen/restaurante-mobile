@@ -1,3 +1,4 @@
+
 package br.com.restaurantemobile.activity;
 
 import android.os.Bundle;
@@ -12,38 +13,34 @@ import java.util.List;
 
 import br.com.restaurantemobile.R;
 import br.com.restaurantemobile.dao.CardapioDao;
-import br.com.restaurantemobile.infra.MenuRecyclerViewAdapter;
+import br.com.restaurantemobile.business.MenuRecyclerViewAdapter;
 import br.com.restaurantemobile.model.Cardapio;
 import br.com.restaurantemobile.model.Pedido;
 import br.com.restaurantemobile.model.dominio.DominioCategoriaCardapio;
 
-/**
- * Created by kone on 12/2/17.
- */
-
-public class DessertPlatesActivity extends AppCompatActivity {
+public class PaymentActivity extends AppCompatActivity {
 
     private Pedido pedido;
     private RecyclerView dessertPlatesRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private TextView txtTotalPedido;
-    Button btnAvancar;
+    private Button btnAvancar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dessert_plates);
+        setContentView(R.layout.payment);
 
         initializeComponents();
     }
 
     public void initializeComponents(){
-        setTitle("Soremesas");
+        setTitle("Finalizar Pedidos");
 
         pedido = (Pedido) getIntent().getSerializableExtra("pedido");
 
-        dessertPlatesRecyclerView = (RecyclerView) findViewById(R.id.dessert_plates_view);
+        dessertPlatesRecyclerView = (RecyclerView) findViewById(R.id.payment_view);
 
         dessertPlatesRecyclerView.setHasFixedSize(true);
 
@@ -63,15 +60,16 @@ public class DessertPlatesActivity extends AppCompatActivity {
         btnAvancar.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-//                Intent mainPlatesActivity = new Intent(DessertPlatesActivity.this, DessertPlatesActivity.class);
-//                mainPlatesActivity .putExtra("pedido", pedido);
-//                startActivity(mainPlatesActivity);
+//                Intent dessertPlatesActivity = new Intent(PaymentActivity.this, DessertActivity.class);
+//                dessertPlatesActivity.putExtra("pedido", pedido);
+//                startActivity(dessertPlatesActivity);
+                // chamar api para finalizar pedido
             }
         });
     }
 
     public List<Cardapio> getDataBase() {
-        return CardapioDao.build(this).buscarPorCategoria(DominioCategoriaCardapio.SOBREMESAS);
+        return CardapioDao.build(this).buscarPorCategoria(DominioCategoriaCardapio.ENTRADAS);
     }
 
 }

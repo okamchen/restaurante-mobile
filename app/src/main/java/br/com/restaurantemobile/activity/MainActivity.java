@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeComponents(){
+        setTitle("Início de Atendimento");
 
         txtName = (EditText)findViewById(R.id.txtName);
         txtNumber = (EditText)findViewById(R.id.txtNumber);

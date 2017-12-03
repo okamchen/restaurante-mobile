@@ -2,20 +2,18 @@ package br.com.restaurantemobile.model.dominio;
 
 import br.com.restaurantemobile.R;
 
-public enum DominioBebida implements ITipoCategoria {
+public enum DominioSobremesa implements ITipoCategoria {
 
-    COCA_COLA("Coca Cola", 1 , R.drawable.coca_cola),
-    SUCO_LARANJA("Suco de Laranja", 2 , R.drawable.suco_laranja),
-    AGUA("Água", 3 , R.drawable.agua),
-    AGUA_COM_GAS("Água com Gás", 4 , R.drawable.agua),
-    CERVEJA("Cerveja", 5 , R.drawable.cerveja),
-    VINHO("Vinho", 6 ,R.drawable.vinho);
+    TORTA_DE_SORVETE("Torta de sorvete", 1, R.drawable.torta_de_sorvete),
+    PUDIM("Pudim", 2, R.drawable.pudim),
+    SAGU("Sagu", 3, R.drawable.sagu),
+    GELATINA("Gelatina", 4, R.drawable.gelatina);
 
     private String descricao;
     private int codigo;
     private int image;
 
-    DominioBebida(String descricao, int codigo, int image){
+    DominioSobremesa(String descricao, int codigo, int image){
         this.descricao = descricao;
         this.codigo = codigo;
         this.image = image;
@@ -33,4 +31,5 @@ public enum DominioBebida implements ITipoCategoria {
     public int getCodigo() {
         return codigo;
     }
+
 }

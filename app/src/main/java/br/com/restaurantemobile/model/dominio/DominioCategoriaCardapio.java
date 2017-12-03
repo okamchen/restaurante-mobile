@@ -1,18 +1,12 @@
 package br.com.restaurantemobile.model.dominio;
 
-import br.com.restaurantemobile.R;
-
-/**
- * Created by kone on 10/12/17.
- */
-
 public enum DominioCategoriaCardapio {
 
     BEBIDAS("bebidas", DominioBebida.values()),
-    ENTRADAS("entradas", DominioBebida.values()),
-    PRATOS("pratos", DominioBebida.values()),
-    SALADAS("saladas", DominioBebida.values()),
-    SOBREMESAS("sobremesas", DominioBebida.values());
+    ENTRADAS("entradas", DominioPratoEntrada.values()),
+    PRATOS("pratos", DominioPratoPrincipal.values()),
+    SALADAS("saladas", DominioSalada.values()),
+    SOBREMESAS("sobremesas", DominioSobremesa.values());
 
     private String descricao;
     private ITipoCategoria[] tipos;

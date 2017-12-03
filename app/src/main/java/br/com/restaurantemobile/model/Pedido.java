@@ -120,4 +120,5 @@ public class Pedido implements Serializable {
     public String getValorTotalFormatado(){
         return "Valor Total: R$ " + this.valorTotal;
     }
+
 }

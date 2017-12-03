@@ -13,7 +13,7 @@ import java.util.List;
 
 import br.com.restaurantemobile.R;
 import br.com.restaurantemobile.dao.CardapioDao;
-import br.com.restaurantemobile.infra.MenuRecyclerViewAdapter;
+import br.com.restaurantemobile.business.MenuRecyclerViewAdapter;
 import br.com.restaurantemobile.model.Cardapio;
 import br.com.restaurantemobile.model.Pedido;
 import br.com.restaurantemobile.model.dominio.DominioCategoriaCardapio;
@@ -60,9 +60,9 @@ public class MainPlatesActivity extends AppCompatActivity {
         btnAvancar.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent dessertPlatesActivity = new Intent(MainPlatesActivity.this, DessertPlatesActivity.class);
-                dessertPlatesActivity.putExtra("pedido", pedido);
-                startActivity(dessertPlatesActivity);
+                Intent saladPlatesActivity = new Intent(MainPlatesActivity.this, SaladPlatesActivity.class);
+                saladPlatesActivity.putExtra("pedido", pedido);
+                startActivity(saladPlatesActivity);
             }
         });
     }

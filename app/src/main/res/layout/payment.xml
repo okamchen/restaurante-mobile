@@ -5,7 +5,7 @@
     android:weightSum="1">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/dessert_plates_view"
+        android:id="@+id/payment_view"
         android:layout_width="match_parent"
         android:layout_height="385dp"
         android:layout_weight="0.27"
@@ -21,10 +21,10 @@
         android:textAlignment="viewStart" />
 
     <Button
-        android:id="@+id/btnAvancar"
+        android:id="@+id/btnFinalizar"
         android:layout_width="match_parent"
         android:layout_height="99dp"
-        android:text="Avançar" />
+        android:text="Finalizar" />
 
 
 </LinearLayout>

@@ -18,34 +18,34 @@ import br.com.restaurantemobile.model.Cardapio;
 import br.com.restaurantemobile.model.Pedido;
 import br.com.restaurantemobile.model.dominio.DominioCategoriaCardapio;
 
-public class EntrancePlatesActivity extends AppCompatActivity {
+public class SaladPlatesActivity extends AppCompatActivity {
 
     private Pedido pedido;
-    private RecyclerView entrancePlatesRecyclerView;
+    private RecyclerView dessertPlatesRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private TextView txtTotalPedido;
-    Button btnAvancar;
+    private Button btnAvancar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.entrance_plates);
+        setContentView(R.layout.salad);
 
         initializeComponents();
     }
 
-    private void initializeComponents() {
-        setTitle("Pratos de Entrada");
+    public void initializeComponents(){
+        setTitle("Saladas");
 
         pedido = (Pedido) getIntent().getSerializableExtra("pedido");
 
-        entrancePlatesRecyclerView = (RecyclerView) findViewById(R.id.entrance_plates_view);
+        dessertPlatesRecyclerView = (RecyclerView) findViewById(R.id.salad_view);
 
-        entrancePlatesRecyclerView.setHasFixedSize(true);
+        dessertPlatesRecyclerView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
-        entrancePlatesRecyclerView.setLayoutManager(layoutManager);
+        dessertPlatesRecyclerView.setLayoutManager(layoutManager);
 
         txtTotalPedido = (TextView) findViewById(R.id.txtTotalPedido);
 
@@ -53,21 +53,22 @@ public class EntrancePlatesActivity extends AppCompatActivity {
 
         mAdapter = new MenuRecyclerViewAdapter(getDataBase(), pedido, txtTotalPedido );
 
-        entrancePlatesRecyclerView.setAdapter(mAdapter);
+        dessertPlatesRecyclerView.setAdapter(mAdapter);
 
         btnAvancar = (Button) findViewById(R.id.btnAvancar);
 
         btnAvancar.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent mainPlatesActivity = new Intent(EntrancePlatesActivity.this, MainPlatesActivity.class);
-                mainPlatesActivity.putExtra("pedido", pedido);
-                startActivity(mainPlatesActivity);
+                Intent dessertPlatesActivity = new Intent(SaladPlatesActivity.this, DessertActivity.class);
+                dessertPlatesActivity.putExtra("pedido", pedido);
+                startActivity(dessertPlatesActivity);
             }
         });
     }
 
     public List<Cardapio> getDataBase() {
-        return CardapioDao.build(this).buscarPorCategoria(DominioCategoriaCardapio.ENTRADAS);
+        return CardapioDao.build(this).buscarPorCategoria(DominioCategoriaCardapio.SALADAS);
     }
+
 }

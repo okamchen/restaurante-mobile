@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/drink_view"
+        android:layout_width="match_parent"
+        android:layout_height="385dp"
+        android:layout_weight="0.27"
+        android:scrollbars="vertical" />
+
+    <TextView
+        android:id="@+id/txtTotalPedido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.72"
+        android:gravity="center"
+        android:text="TextView"
+        android:textAlignment="viewStart" />
+
+    <Button
+        android:id="@+id/btnAvancar"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:text="Avançar" />
+
+
+</LinearLayout>
