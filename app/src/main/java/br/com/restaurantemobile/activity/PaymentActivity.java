@@ -53,7 +53,7 @@ public class PaymentActivity extends AppCompatActivity {
 
         txtTotalPedido.setText(pedido.getValorTotalFormatado());
 
-        mAdapter = new PaymentRecyclerViewAdapter(pedido.getItens());
+        mAdapter = new PaymentRecyclerViewAdapter(pedido.getItensQuantidade());
 
         dessertPlatesRecyclerView.setAdapter(mAdapter);
 
@@ -62,9 +62,9 @@ public class PaymentActivity extends AppCompatActivity {
 //        btnAvancar.setOnClickListener(new View.OnClickListener() {
 //
 //            public void onClick(View v) {
-////                Intent dessertPlatesActivity = new Intent(PaymentActivity.this, DessertActivity.class);
-////                dessertPlatesActivity.putExtra("pedido", pedido);
-////                startActivity(dessertPlatesActivity);
+//                Intent dessertPlatesActivity = new Intent(PaymentActivity.this, DessertActivity.class);
+//                dessertPlatesActivity.putExtra("pedido", pedido);
+//                startActivity(dessertPlatesActivity);
 //                // chamar api para finalizar pedido
 //            }
 //        });

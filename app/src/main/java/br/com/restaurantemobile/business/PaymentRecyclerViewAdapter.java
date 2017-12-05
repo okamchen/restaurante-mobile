@@ -1,5 +1,6 @@
 package br.com.restaurantemobile.business;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +9,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import br.com.restaurantemobile.R;
 import br.com.restaurantemobile.model.Cardapio;
@@ -19,24 +24,43 @@ import br.com.restaurantemobile.util.CurrencyUtil;
 
 public class PaymentRecyclerViewAdapter extends RecyclerView.Adapter<PaymentRecyclerViewAdapter.MyViewHolder> {
 
-    public List<Cardapio> cardapios;
+    public HashMap<Cardapio, Integer> itensQuantidade;
+    public List<Cardapio> itensCarregados = new ArrayList<>();
 
-    public PaymentRecyclerViewAdapter(List<Cardapio> cardapios){
-        this.cardapios = cardapios;
+    public PaymentRecyclerViewAdapter(HashMap<Cardapio, Integer> itensQuantidade){
+        this.itensQuantidade= itensQuantidade;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View listItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.card, parent, false);
+        View listItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.detail_card, parent, false);
         return new MyViewHolder(listItem);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.description.setText(cardapios.get(position).getDescricao());
-        holder.price.setText(getPriceWithCurrency(position));
-        holder.image.setImageResource(getImage(cardapios.get(position)));
-        holder.amount.setText("0");
+
+        Map.Entry<Cardapio, Integer> itemSelecionado = null;
+        Iterator<Map.Entry<Cardapio, Integer>> iterator = itensQuantidade.entrySet().iterator();
+
+        while (iterator.hasNext()){
+            itemSelecionado = iterator.next();
+            if(!itensCarregados.contains(itemSelecionado.getKey())){
+                itensCarregados.add(itemSelecionado.getKey());
+                break;
+            }
+        }
+
+        Cardapio cardapio = Cardapio.clone(itemSelecionado.getKey());
+        Integer total = new Integer(itemSelecionado.getValue());
+
+        holder.description.setText(cardapio.getDescricao());
+        holder.price.setText(getPriceWithCurrency(cardapio.getValor()));
+        holder.image.setImageResource(getImage(cardapio));
+        holder.amount.setText(total.toString());
+
+        itensCarregados.add(itemSelecionado.getKey());
+
     }
 
     private int getImage(Cardapio cardapio) {
@@ -45,21 +69,20 @@ public class PaymentRecyclerViewAdapter extends RecyclerView.Adapter<PaymentRecy
 
         for(ITipoCategoria tipo : tipos){
             if(tipo.getCodigo() == cardapio.getCodigo()){
-                image = tipo.getImage();
+                image = new Integer(tipo.getImage());
             }
         }
 
         return image;
     }
 
-    private String getPriceWithCurrency(int position) {
-        String price = String.valueOf(cardapios.get(position).getValor());
-        return CurrencyUtil.getCurrency(price);
+    private String getPriceWithCurrency(double price) {
+        return CurrencyUtil.getCurrency(String.valueOf(price));
     }
 
     @Override
     public int getItemCount() {
-        return cardapios.size();
+        return itensQuantidade.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

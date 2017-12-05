@@ -17,6 +17,10 @@ public class Cardapio implements Serializable {
         super();
     }
 
+    public static Cardapio clone(Cardapio cardapio){
+        return new Cardapio(cardapio.getId(), cardapio.getCodigo(), cardapio.getDescricao(), cardapio.getValor(), cardapio.getCategoria());
+    }
+
     public Cardapio(long id, int codigo, String descricao, double valor, String categoria){
         super();
         this.id = id;

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class Pedido implements Serializable {
@@ -14,6 +15,7 @@ public class Pedido implements Serializable {
     private Date data;
     private BigDecimal valorTotal = new BigDecimal("0");
     private List<Cardapio> itens;
+    private HashMap<Cardapio, Integer> itensQuantidade;
 
     public long getId() {
         return id;
@@ -96,5 +98,21 @@ public class Pedido implements Serializable {
         }
     }
 
+    public HashMap<Cardapio, Integer> getItensQuantidade() {
 
+        if(itensQuantidade == null){
+            itensQuantidade = new HashMap<>();
+        }
+
+        for(Cardapio item : this.getItens()){
+            if(itensQuantidade.get(item) == null){
+                itensQuantidade.put(item, 1);
+            } else {
+                Integer qtd = itensQuantidade.get(item) + 1;
+                itensQuantidade.put(item, qtd);
+            }
+        }
+
+        return itensQuantidade;
+    }
 }
